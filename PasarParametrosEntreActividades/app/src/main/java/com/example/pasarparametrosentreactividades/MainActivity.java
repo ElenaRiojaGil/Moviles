@@ -12,20 +12,28 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.pasarparametrosentreactividades.beans.Usuario;
+import com.example.pasarparametrosentreactividades.datos.SeasData;
+
 public class MainActivity extends AppCompatActivity {
-private EditText edtUser;
-private Button btnEnviar;
+    private EditText edtUser;
+    private Button btnEnviar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        edtUser=findViewById(R.id.edtUsuario);
-        btnEnviar=findViewById(R.id.btnEnviar);
+        edtUser = findViewById(R.id.edtUsuario);
+        btnEnviar = findViewById(R.id.btnEnviar);
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent navegarEntrePantallas=new Intent(getBaseContext(), MainActivity2.class);
-                navegarEntrePantallas.putExtra("USUARIO",edtUser.getText().toString());
+                Intent navegarEntrePantallas = new Intent(getBaseContext(), MainActivity2.class);
+                // navegarEntrePantallas.putExtra("USUARIO",edtUser.getText().toString());
+                Usuario miUsuario = new Usuario();//(edtUser.getText().toString())
+                miUsuario.setEmail(edtUser.getText().toString());
+               // navegarEntrePantallas.putExtra("USUARIO", miUsuario);
+                SeasData.setUsuario(miUsuario);
                 startActivity(navegarEntrePantallas);
             }
         });

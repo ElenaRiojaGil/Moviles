@@ -26,13 +26,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="User"
         android:layout_gravity="right"/>
+
     <EditText
+        android:id="@+id/edtUsuario"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
-        android:id="@+id/edtUsuario"
         android:layout_gravity="center_vertical"
-        />
+        android:layout_weight="10"
+        android:hint="Nombre" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
