@@ -7,15 +7,15 @@ import retrofit2.http.GET;
 import com.example.endspointsretrofit.json_mapper.MovieResponse;
 
 public interface MoviesAPI {
+    @GET("movie/popular")
+    Call<MovieResponse> getPopularMovies(@Query("api_key") String apiKey, @Query("language") String language, @Query("page") int page);
+
+    @GET("search/movie")
+    Call<MovieResponse> searchMovie(@Query("api_key") String apiKey, @Query("language") String language, @Query("query") String query, @Query("page") int page);
+
+    @GET("movie/{movie_id}")
+    Call<Movie> getMovieDetails(@Path("movie_id") int movieId, @Query("api_key") String apiKey, @Query("language") String language);
     // Routers!!! express.js
-    @GET("movie/popular?api_key=d584ea8b0edde13d123d843ba4fc69e0")
-    Call<MovieResponse> getPopularMovies();
-
-    @GET("search/movie?api_key=d584ea8b0edde13d123d843ba4fc69e0")
-    Call<MovieResponse> getBuscarMovies();
-
-    @GET("movie/{movie_id}?api_key=d584ea8b0edde13d123d843ba4fc69e0")
-    Call<MovieResponse> getDetallesMovies();
 
 }
 
