@@ -27,81 +27,81 @@ public class LoginUserModel implements ContractLoginUser.Model {
     public LoginUserModel(LoginUserPresenter presenter) {
         this.presenter = presenter;
     }
-@Override
-public void findUserWS(User user, OnLoginUserListener promise){
-    try {
-        final Handler manejador = new Handler();
-        manejador.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                boolean success = true;
-                if (success) {
-                    User user =new User();
-                    promise.onFinished(user);
-                } else {
-                    promise.onFailure("Loging Incorrecto");
-                }
 
-            }
-        })
-
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
-/**
     @Override
-    public void loginAPI(User user, final OnLoginUserListener onLoginUserListener) {
-        // Crear una instancia de ApiService
-        ApiService apiService = RetrofitCliente.getClient("http://" + IP_BASE + "").
-                create(ApiService.class);
-
-// Realizar la solicitud al Servlet
-        // Call<MyData> call = apiService.getMyData("1");
-        LoginParams loginParams = new LoginParams("prueba@example.com",
-                "password1");
-                /*
-                {
-                      "email": "prueba@example.com",
-                      "password": "password1"
+    public void findUserWS(User user, OnLoginUserListener promise) {
+        try {
+            final Handler manejador = new Handler();
+            manejador.postDelayed(
+                    new Runnable() {
+                @Override
+                public void run() {
+                    boolean success = true;
+                    if (success) {
+                        User user = new User();
+                        promise.onFinished(user);
+                    } else {
+                        promise.onFailure("Loging Incorrecto");
                     }
 
-        Call<ApiResponse> call = apiService.login(loginParams);
-        call.enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (response.isSuccessful()) {
-                    // Procesar la respuesta aquí
-                    ApiResponse myData = response.body();
 
-                    //String message = myData.getMessage();
-
-                    ArrayList<User> lstUsers = myData.getLstUsers();
-
-                    onLoginUserListener.onFinished(lstUsers.get(0));
-
-                    // Actualizar la interfaz de usuario con el mensaje recibido
-                } else {
-                    // Manejar una respuesta no exitosa
-                    // Manejar una respuesta no exitosa
-                    Log.e("Response Error", "Código de estado HTTP: " + response.code());
-                    try {
-                        String errorBody = response.errorBody().string();
-                        Log.e("Response Error", "Cuerpo de error: " + errorBody);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
-            }
+            }, 4000);
 
-            @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
-                // Manejar errores de red o del servidor
-                Log.e("Response Error", "Cuerpo de error: " + t.getMessage());
-            }
-        });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    **/
+/**
+ @Override public void loginAPI(User user, final OnLoginUserListener onLoginUserListener) {
+ // Crear una instancia de ApiService
+ ApiService apiService = RetrofitCliente.getClient("http://" + IP_BASE + "").
+ create(ApiService.class);
+
+ // Realizar la solicitud al Servlet
+ // Call<MyData> call = apiService.getMyData("1");
+ LoginParams loginParams = new LoginParams("prueba@example.com",
+ "password1");
+ /*
+ {
+ "email": "prueba@example.com",
+ "password": "password1"
+ }
+
+ Call<ApiResponse> call = apiService.login(loginParams);
+ call.enqueue(new Callback<ApiResponse>() {
+ @Override public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+ if (response.isSuccessful()) {
+ // Procesar la respuesta aquí
+ ApiResponse myData = response.body();
+
+ //String message = myData.getMessage();
+
+ ArrayList<User> lstUsers = myData.getLstUsers();
+
+ onLoginUserListener.onFinished(lstUsers.get(0));
+
+ // Actualizar la interfaz de usuario con el mensaje recibido
+ } else {
+ // Manejar una respuesta no exitosa
+ // Manejar una respuesta no exitosa
+ Log.e("Response Error", "Código de estado HTTP: " + response.code());
+ try {
+ String errorBody = response.errorBody().string();
+ Log.e("Response Error", "Cuerpo de error: " + errorBody);
+ } catch (IOException e) {
+ e.printStackTrace();
+ }
+ }
+ }
+
+ @Override public void onFailure(Call<ApiResponse> call, Throwable t) {
+ // Manejar errores de red o del servidor
+ Log.e("Response Error", "Cuerpo de error: " + t.getMessage());
+ }
+ });
+ }
+ **/
 }
 
